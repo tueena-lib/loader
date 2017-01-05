@@ -11,7 +11,9 @@ Usage
 $loader = new Loader;
 
 // Define a directory, where classes of a namespace are found.
-$loader->addNamespaceDirectory('\\my\\namespace', '/path/to/my/class/files');
+// Namespaces are defined without leading and trailing backslashes.
+// Directories without trailing slashes.
+$loader->addNamespaceDirectory('my\\namespace', '/path/to/my/class/files');
 
 // Or define a closure as loader. This closure will be called with the
 // class name as parameter and must return true if the class could be
