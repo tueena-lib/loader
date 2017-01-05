@@ -1,0 +1,16 @@
+{
+	"name": "tueena-lib/loader",
+	"description": "A tiny php service to configure an autoloader.",
+	"type": "library",
+	"license": "MIT",
+	"require": {},
+	"require-dev": {
+		"phpunit/phpunit": "^5.7"
+	},
+	"authors": [
+		{
+			"name": "Bastian Fenske",
+			"email": "bastian.fenske@tueena.org"
+		}
+	]
+}
