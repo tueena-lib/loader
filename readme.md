@@ -2,6 +2,10 @@ tueenaLib/loader
 ================
 A tiny php service to configure an autoloader.
 
+Requirements
+------------
+php >= 7.0.0
+
 Usage
 -----
 ```php

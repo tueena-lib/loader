@@ -17,6 +17,7 @@
  * @file
  */
 
+declare(strict_types=1);
 namespace tueenaLib\loader;
 
 interface ILoader
@@ -31,7 +32,7 @@ interface ILoader
 	 * @param string $path Path without trailing slash.
 	 * @return self
 	 */
-	public function defineNamespaceDirectory($namespace, $path);
+	public function defineNamespaceDirectory(string $namespace, string $path): Loader;
 
 	/**
 	 * Adds a custom autoload function.
@@ -43,5 +44,5 @@ interface ILoader
 	 * @param \Closure $loader
 	 * @return self
 	 */
-	public function addLoader(\Closure $loader);
+	public function addLoader(\Closure $loader): Loader;
 }

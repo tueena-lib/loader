@@ -17,6 +17,7 @@
  * @file
  */
 
+declare(strict_types=1);
 namespace tueenaLib\loader;
 
 class Loader implements ILoader
@@ -47,7 +48,7 @@ class Loader implements ILoader
 	 * @param string $path Path without trailing slash.
 	 * @return self
 	 */
-	public function defineNamespaceDirectory($namespace, $path)
+	public function defineNamespaceDirectory(string $namespace, string $path): Loader
 	{
 		return $this->addLoader(function ($className) use ($namespace, $path) {
 			if (strpos($className, $namespace) !== 0)
@@ -73,7 +74,7 @@ class Loader implements ILoader
 	 * @param \Closure $Loader
 	 * @return self
 	 */
-	public function addLoader(\Closure $loader)
+	public function addLoader(\Closure $loader): Loader
 	{
 		$this->loaders[] = $loader;
 		return $this;

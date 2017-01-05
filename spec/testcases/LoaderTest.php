@@ -17,6 +17,7 @@
  * @file
  */
 
+declare(strict_types=1);
 namespace tueenaLib\loader\spec;
 
 use tueenaLib\loader\ILoader;
@@ -58,8 +59,9 @@ class LoaderTest extends \PHPUnit_Framework_TestCase
 		$loader = new Loader;
 
 		// when
-		$loader->addLoader(function ($className) use (&$closureCallLog) {
+		$loader->addLoader(function (string $className) use (&$closureCallLog): bool {
 			$closureCallLog[] = $className;
+			return true;
 		});
 		class_exists('tueenaLib\\loader\\spec\\NotExistingClass');
 
@@ -70,7 +72,7 @@ class LoaderTest extends \PHPUnit_Framework_TestCase
 	/**
 	 * @test
 	 */
-	public function Loaders_are_called_in_the_order_of_definition()
+	public function Loaders_are_called_in_the_order_of_definition_until_a_class_has_been_loaded()
 	{
 		// given
 		$log = [];
@@ -78,14 +80,21 @@ class LoaderTest extends \PHPUnit_Framework_TestCase
 
 		// when
 		$loader
-			->addLoader(function ($className) use (&$log) {
+			->addLoader(function (string $className) use (&$log): bool {
 				$log[] = 'First';
+				return false;
 			})
-			->addLoader(function ($className) use (&$log) {
+			->addLoader(function (string $className) use (&$log): bool {
 				$log[] = 'Second';
+				return false;
 			})
-			->addLoader(function ($className) use (&$log) {
+			->addLoader(function (string $className) use (&$log): bool {
 				$log[] = 'Third';
+				return true; // <- this should stop any further loader calls.
+			})
+			->addLoader(function (string $className) use (&$log): bool {
+				$log[] = 'Fourth';
+				return false;
 			});
 		class_exists('tueenaLib\\loader\\spec\\NotExistingClass');
 
