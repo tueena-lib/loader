@@ -1,10 +1,11 @@
-tueenaLib/loader
-================
-A tiny php service to configure an autoloader.
+tueena-lib/loader
+=================
+A tiny service to configure an autoloader for php 7 applications.
 
-Requirements
-------------
-php >= 7.0.0
+Features
+--------
+* Provides a method to assign a directory to a namespace.
+* Provides a method to register a closure, that will be called to load a class.
 
 Usage
 -----
@@ -43,6 +44,18 @@ $loader
 License
 -------
 MIT
+
+Requirements
+------------
+php >= 7.0.0
+
+Installation
+------------
+If you use `Composer`:
+```
+composer require tueena-lib/loader
+```
+Otherwise just download the two classes and the interface and use it.
 
 Contact
 -------
