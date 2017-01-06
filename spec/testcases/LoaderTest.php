@@ -1,19 +1,11 @@
 <?php
 
 /**
- * tueena lib
+ * Part of the tueena lib
  *
- * Copyright (c) Bastian Fenske <bastian.fenske@tueena.org>
- *
- * Licensed under The MIT License
- * For full copyright and license information, please see the LICENSE.txt
- * Redistributions of files must retain the above copyright notice.
- *
- * @package loader
- * @author Bastian Fenske <bastian.fenske@tueena.org>
- * @copyright Copyright (c) Bastian Fenske <bastian.fenske@tueena.org>
  * @license http://www.opensource.org/licenses/mit-license.php MIT License
  * @link http://tueena.org/
+ * @author Bastian Fenske <bastian.fenske@tueena.org>
  * @file
  */
 
@@ -39,11 +31,11 @@ class LoaderTest extends \PHPUnit_Framework_TestCase
 	public function A_directory_can_be_defined_where_all_classes_of_a_namespace_are_found()
 	{
 		// given
-		$loader = new Loader;
+		$target = new Loader;
 		$this->assertFalse(class_exists('tueenaLib\\loader\\spec\\something\\foo\\Bar'));
 
 		// when
-		$loader->defineNamespaceDirectory('tueenaLib\\loader\\spec\\something', __DIR__ . '/../stubs/loader-test');
+		$target->defineNamespaceDirectory('tueenaLib\\loader\\spec\\something', __DIR__ . '/../stubs/loader-test');
 
 		// then
 		$this->assertTrue(class_exists('tueenaLib\\loader\\spec\\something\\foo\\Bar'));
@@ -56,10 +48,10 @@ class LoaderTest extends \PHPUnit_Framework_TestCase
 	{
 		// given
 		$closureCallLog = [];
-		$loader = new Loader;
+		$target = new Loader;
 
 		// when
-		$loader->addLoader(function (string $className) use (&$closureCallLog): bool {
+		$target->addLoader(function (string $className) use (&$closureCallLog): bool {
 			$closureCallLog[] = $className;
 			return true;
 		});
@@ -76,10 +68,10 @@ class LoaderTest extends \PHPUnit_Framework_TestCase
 	{
 		// given
 		$log = [];
-		$loader = new Loader;
+		$target = new Loader;
 
 		// when
-		$loader
+		$target
 			->addLoader(function (string $className) use (&$log): bool {
 				$log[] = 'First';
 				return false;
@@ -108,14 +100,14 @@ class LoaderTest extends \PHPUnit_Framework_TestCase
 	public function The_two_public_methods_return_an_instance_of_the_loader()
 	{
 		// given
-		$loader = new Loader;
+		$target = new Loader;
 
 		// when
-		$returnValue1 = $loader->defineNamespaceDirectory('x', 'y');
-		$returnValue2 = $loader->addLoader(function () {});
+		$returnValue1 = $target->defineNamespaceDirectory('x', 'y');
+		$returnValue2 = $target->addLoader(function () {});
 
 		// then
-		$this->assertSame($loader, $returnValue1);
-		$this->assertSame($loader, $returnValue2);
+		$this->assertSame($target, $returnValue1);
+		$this->assertSame($target, $returnValue2);
 	}
 }
