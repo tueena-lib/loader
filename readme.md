@@ -4,6 +4,7 @@ A tiny service to configure an autoloader for php 7 applications.
 
 Features
 --------
+* Test driven developed. Code coverage 100%.
 * Provides a method to assign a directory to a namespace.
 * Provides a method to register a closure, that will be called to load a class.
 
