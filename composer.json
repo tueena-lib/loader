@@ -16,6 +16,6 @@
 		}
 	],
 	"autoload": {
-		"psr-4": {"tueena-lib\\loader\\": "source/"}
+		"psr-4": {"tueenaLib\\loader\\": "source/"}
 	}
 }
