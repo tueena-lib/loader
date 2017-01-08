@@ -56,7 +56,7 @@ If you use `Composer`:
 ```
 composer require tueena-lib/loader
 ```
-Otherwise just download the two classes and the interface and use it.
+Otherwise just download the class file and use it.
 
 Contact
 -------
